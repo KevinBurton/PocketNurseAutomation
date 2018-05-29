@@ -1,8 +1,9 @@
 ﻿using System;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
+using PocketNurseAutomation.Selenium;
 
-namespace PocketNurseAutomation
+namespace PocketNurseAutomation.Pages
 {
   public class LoginPage
   {

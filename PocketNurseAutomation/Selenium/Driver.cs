@@ -4,7 +4,7 @@ using System.Threading;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 
-namespace PocketNurseAutomation
+namespace PocketNurseAutomation.Selenium
 {
     public class Driver
     {
