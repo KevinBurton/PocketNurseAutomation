@@ -1,19 +1,41 @@
-﻿using OpenQA.Selenium;
+﻿using System;
+using OpenQA.Selenium;
+using OpenQA.Selenium.Support.UI;
 
-namespace WordpressAutomation
+namespace PocketNurseAutomation
 {
-    public class DashboardPage
+  public class HomePage
+  {
+    public static void GoTo()
     {
-        public static bool IsAt
-        {
-            get 
-            { 
-                // Refactor: Can we create a generalized IsAt for all pages?
-                var h2s = Driver.Instance.FindElements(By.TagName("h2"));
-                if (h2s.Count > 0)
-                    return h2s[0].Text == "Dashboard";
-                return false;
-            }
-        }
+      Driver.Instance.Navigate().GoToUrl(Driver.BaseAddress);
+      var wait = new WebDriverWait(Driver.Instance, TimeSpan.FromSeconds(10));
+      wait.Until(d => d.FindElement(By.LinkText("PocketNurse")));
     }
+    public static bool IsAt
+    {
+      get
+      {
+        // Refactor: Can we create a generalized IsAt for all pages?
+        var home = Driver.Instance.FindElement(By.LinkText("PocketNurse"));
+        if(home.GetAttribute("href") == "/")
+        {
+          var homeLink = Driver.Instance.FindElement(By.LinkText("Home"));
+          if (home.GetAttribute("href") == "/")
+          {
+            var aboutLink = Driver.Instance.FindElement(By.LinkText("About"));
+            if (aboutLink.GetAttribute("href") == "/Home/About")
+            {
+              var contactLink = Driver.Instance.FindElement(By.LinkText("Contact"));
+              if (contactLink.GetAttribute("href") == "/Home/Contact")
+              {
+                return true;
+              }
+            }
+          }
+        }
+        return false;
+      }
+    }
+  }
 }

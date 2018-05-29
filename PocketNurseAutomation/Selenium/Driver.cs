@@ -2,9 +2,9 @@
 using System.Collections.ObjectModel;
 using System.Threading;
 using OpenQA.Selenium;
-using OpenQA.Selenium.Firefox;
+using OpenQA.Selenium.Chrome;
 
-namespace WordpressAutomation
+namespace PocketNurseAutomation
 {
     public class Driver
     {
@@ -12,12 +12,12 @@ namespace WordpressAutomation
 
         public static string BaseAddress
         {
-            get { return "http://localhost:21271/"; }
+            get { return "http://localhost/"; }
         }
 
         public static void Initialize()
         {
-            Instance = new FirefoxDriver();
+            Instance = new ChromeDriver();
             TurnOnWait();
         }
 
@@ -40,12 +40,12 @@ namespace WordpressAutomation
 
         private static void TurnOnWait()
         {
-            Instance.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(5));
+            Instance.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(5);
         }
 
         private static void TurnOffWait()
         {
-            Instance.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(0));
+            Instance.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(0);
         }
     }
 }
